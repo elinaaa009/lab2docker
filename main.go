@@ -13,13 +13,13 @@ func main() {
 		port = "8080"
 	}
 
-	message := os.Getenv("WELCOME_MESSAGE")
-	if message == "" {
-		message = "Hello from default configuration!"
+	mode := os.Getenv("APP_MODE")
+	if mode == "" {
+		mode = "development"
 	}
 
 	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
-		fmt.Fprintf(w, "Message: %s\nRunning securely on Alpine as non-root user!\n", message)
+		fmt.Fprintf(w, "App Mode: %s\nRunning securely on Alpine as non-root user!\n", mode)
 	})
 
 	log.Printf("Server is starting on port %s...", port)
